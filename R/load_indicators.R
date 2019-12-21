@@ -1,21 +1,31 @@
-m <- grep("(?<=https:\\/\\/ghoapi\\.azureedge\\.net\\/api\\/)[[:alpha:]]+(?=\\?)?", "https://ghoapi.azureedge.net/api/Indicator?", value=TRUE, perl=TRUE)
-regmatches("https://ghoapi.azureedge.net/api/Indicator", m)
-load_url_to_tibble <- function(url) {
+#' Load all data for the provided indicator.
+#'
+#' @param indicator A valid WHO indicator. Check show_GHO_indicators() for options.
+#' @return A data frame containing all data of the WHO indicator.
+#' @examples
+#' read_GHO_data("WHOSIS_000001")
+read_GHO_data <- function(indicator) {
+  # Load indicators to verify that user provided indicator does exist
+  indicators <- show_GHO_indicators()
+  if (!(indicator %in% indicators$IndicatorName)) {
+    stop("Provided indicator does not exist in the WHO database.")
+  }
 
-  download.file(url="https://ghoapi.azureedge.net/api/Indicator",
-                destfile="data/indicator.json",
-                method="auto")
+  #TODO allow for filtering using ODATA API
+  data <- download_ind(indicator)
+
+  return(data)
 }
 
-indicators <- ""
 
-download.file(url="https://ghoapi.azureedge.net/api/Indicator",
-              destfile="data/indicators.json",
-              method="auto")
+#' Load table with all available indicators for the GHO API.
+#'
+#' In the background we load https://ghoapi.azureedge.net/api/Indicator. This
+#' is a JSON file with all indicators which are available in the WHO database.
+#'
+#' @return A data frame with all available indicators.
+show_GHO_indicators <- function() {
+  data <- download_ind("Indicator")
 
-
-result <- rjson::fromJSON(file="data/indicators.json")[["value"]]
-tmp <- do.call(dplyr::bind_rows, result)
-
-m <- regexec("^(([^:]+)://)?([^:/]+)(/api/)([^?]*)(\\?.*)", x)
-x <- "https://ghoapi.azureedge.net/api/Indicator?"
+  return(data)
+}
