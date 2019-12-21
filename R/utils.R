@@ -86,15 +86,3 @@ null_to_NA_list <- function(list) {
 
   return(list)
 }
-
-#' Generate a SHA256 hash file from a downloaded WHO data file
-#'
-#' @param list A data object
-#' @return A character string of length 64 containing the SHA256 string
-create_hash_from_data <- function(data)
-{
-  return( digest(data, algo="sha256", serialize=T) )
-
-  #Potentially insert the hash with the date of generation, WHO Indicator and other metadata in a centrally accessible online SQL database
-  #So that we can check whether a date file has been updated (compared to the cached local version)
-}
