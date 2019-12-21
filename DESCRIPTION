@@ -2,7 +2,7 @@ Package: ghoR
 Type: Package
 Title: R interface for the GHO API of the WHO
 Version: 0.1.0
-Author: M. van der Broek
+Author: M. van der Broek, Shady el-Gewily
 Maintainer: M. van der Broek <markvanderbroek@gmail.com>
 Description: This package provides an interface to load data from the GHO API.
     The GHO API provides all publicly available data provided by the WHO.
@@ -12,5 +12,6 @@ LazyData: true
 Imports:
     dplyr,
     rjson,
-    data.table
+    data.table,
+    digest
 RoxygenNote: 7.0.2
