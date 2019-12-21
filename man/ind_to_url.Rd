@@ -15,3 +15,6 @@ A valid GHO API url in string format.
 \description{
 Indicator value to valid API url
 }
+\examples{
+ind_to_url("RSUD_30")
+}

@@ -15,3 +15,6 @@ TRUE if indicator is in cache, FALSE if not.
 \description{
 Check if indicator data is already downloaded and in "cache"
 }
+\examples{
+ind_in_cache("RSUD_30")
+}

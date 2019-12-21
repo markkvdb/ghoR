@@ -71,10 +71,9 @@ download_ind <- function(ind) {
 
   # Replace NULL values by NA
   json_NA <- lapply(json, null_to_NA_list)
-  data <- do.call(rbind,
-                  lapply(json_NA, rbind.data.frame, stringsAsFactors=FALSE))
+  data <- data.table::rbindlist(json_NA)
 
-  return(dplyr::as_tibble(data))
+  return(data)
 }
 
 

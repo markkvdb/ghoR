@@ -7,7 +7,7 @@
 read_GHO_data <- function(indicator) {
   # Load indicators to verify that user provided indicator does exist
   indicators <- show_GHO_indicators()
-  if (!(indicator %in% indicators$IndicatorName)) {
+  if (!(indicator %in% indicators$IndicatorCode)) {
     stop("Provided indicator does not exist in the WHO database.")
   }
 

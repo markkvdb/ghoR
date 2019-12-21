@@ -15,3 +15,6 @@ ind_to_json(ind)
 \description{
 Indicator value to local JSON file
 }
+\examples{
+ind_to_json("RSUD_30")
+}
