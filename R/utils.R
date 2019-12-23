@@ -91,10 +91,34 @@ null_to_NA_list <- function(list) {
 #'
 #' @param list A data object
 #' @return A character string of length 64 containing the SHA256 string
-create_hash_from_data <- function(data)
-{
+create_hash_from_data <- function(data) {
   return(digest::digest(data, algo="sha256", serialize=T))
 
   #Potentially insert the hash with the date of generation, WHO Indicator and other metadata in a centrally accessible online SQL database
   #So that we can check whether a date file has been updated (compared to the cached local version)
+}
+
+#' Retrieve the last update date of an indicator from WHO
+#'
+#' @param ind A valid indicator of the GHO API.
+#' @return A Date object containing the last update
+ind_to_last_update <- function(ind) {
+  #We would like to minimize the download time, so we scrape the empty table and save it as an xml structure
+  url_part_1 <- "https://apps.who.int/gho/athena/data/GHO/"
+  url_part_2 <- ind
+  url_part_3 <- "?profile=xtab&format=html&x-topaxis=GHO&x-title=table&filter="
+  empty_table_xml <- xml2::read_html(paste0(url_part_1, url_part_2, url_part_3))
+
+  last_update_field <- stringr::str_extract(
+                                          as.character(empty_table_xml),
+                                           '\\"\\bLastUpdate\\b\\":
+                                          \\"\\d\\d\\d\\d-\\d\\d-\\d\\d'
+  )
+
+  last_updated <- stringr::str_extract(
+                                      as.character(empty_table_xml),
+                                      '\\d\\d\\d\\d-\\d\\d-\\d\\d'
+  )
+
+  return(as.Date(last_updated))
 }
