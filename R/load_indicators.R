@@ -1,5 +1,6 @@
 #' Load all data for the provided indicator.
 #'
+#' @export
 #' @param indicator A valid WHO indicator. Check show_GHO_indicators() for options.
 #' @return A data frame containing all data of the WHO indicator.
 #' @examples
@@ -23,6 +24,7 @@ read_GHO_data <- function(indicator) {
 #' In the background we load https://ghoapi.azureedge.net/api/Indicator. This
 #' is a JSON file with all indicators which are available in the WHO database.
 #'
+#' @export
 #' @return A data frame with all available indicators.
 show_GHO_indicators <- function() {
   data <- download_ind("Indicator")

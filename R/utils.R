@@ -9,7 +9,7 @@ separate_url <- function(url) {
   matches <- regexec("^(([^:]+)://)?([^:/]+)(/api/)([^?]*)(\\?.*)", url)
 
   # Save parts in
-  parts <- do.call(rbind, lapply(regmatches(url, matches), `[`, c(3L, 4L, 5L, 6L, 7L)))
+  parts <- t(sapply(regmatches(url, matches), `[`, c(3L, 4L, 5L, 6L, 7L)))
   colnames(parts) <- c("protocol", "host", "api", "indicator", "filter")
 
   return(parts)
