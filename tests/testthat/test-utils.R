@@ -15,7 +15,7 @@ test_that("indicator to url works", {
 })
 
 test_that("indicator to json works", {
-  expect_equal(ind_to_json("RSUD_30"), "inst/RSUD_30.json")
+  expect_equal(ind_to_json("RSUD_30"), "~/.ghoR/RSUD_30.json")
 })
 
 #TODO test ind_in_cache()
