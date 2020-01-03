@@ -110,14 +110,13 @@ ind_to_last_update <- function(ind) {
   empty_table_xml <- xml2::read_html(paste0(url_part_1, url_part_2, url_part_3))
 
   last_update_field <- stringr::str_extract(
-                                          as.character(empty_table_xml),
-                                           '\\"\\bLastUpdate\\b\\":
-                                          \\"\\d\\d\\d\\d-\\d\\d-\\d\\d'
+    as.character(empty_table_xml),
+    '\\"\\bLastUpdate\\b\\":\\"\\d\\d\\d\\d-\\d\\d-\\d\\d'
   )
 
   last_updated <- stringr::str_extract(
-                                      as.character(empty_table_xml),
-                                      '\\d\\d\\d\\d-\\d\\d-\\d\\d'
+    as.character(empty_table_xml),
+    '\\d\\d\\d\\d-\\d\\d-\\d\\d'
   )
 
   return(as.Date(last_updated))
