@@ -36,7 +36,7 @@ ind_to_url <- function(ind) {
 #' @examples
 #' ind_to_json("RSUD_30")
 ind_to_json <- function(ind) {
-  json <- paste0("inst/", ind, ".json")
+  json <- paste0("~/.ghoR/", ind, ".json")
 
   return(json)
 }
@@ -48,6 +48,10 @@ ind_to_json <- function(ind) {
 #' @examples
 #' ind_in_cache("RSUD_30")
 ind_in_cache <- function(ind) {
+  if (!dir.exists("~/.ghoR")) {
+    dir.create("~/.ghoR")
+  }
+
   return(file.exists(ind_to_json(ind)))
 }
 
