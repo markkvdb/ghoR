@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ghoR is to ...
+The ghoR package can be used to conventiently load data from the GHO portal of the WHO. The GHO database contains over 20,000 *indicators* which represent a statistic on a country level.
 
 ## Installation
 
@@ -36,25 +36,28 @@ devtools::install_github("markkvdb/ghoR")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+If you are not sure yet which indicator you would like to explore you can discover all indicators by loading it into a dataframe. To prevent downloading the dataset every time you request a dataset, the dataset is saved in `~/.ghoR/`. This file is only updated if the WHO website shows that 
 
-```{r example}
+```{r example-load}
+# First load the library and kable to present table
 library(ghoR)
-## basic example code
+set.seed(420)
+
+# Get a table of all indicators with the code and description.
+indicators <- show_GHO_indicators()
+indicators_sample <- dplyr::sample_n(indicators, 10)
+
+knitr::kable(indicators_sample)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+As an example, we will look at the remaining life expectancy from age $x$ for all available countries, years, sexes and ages. We can load this data using
 
-```{r cars}
-summary(cars)
+```{r example-indicator}
+ex_data <- read_GHO_data("LIFE_0000000035")
+
+knitr::kable(head(ex_data, 10))
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+## Updating Datasets
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+To prevent downloading the dataset every time you request a dataset, the dataset is saved in `~/.ghoR/`. This file is only updated if the WHO website shows that the last update date is after the last updated date of the downloaded dataset on the user's computer.
