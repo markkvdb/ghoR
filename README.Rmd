@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # ghoR
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/markkvdb/ghoR.svg?branch=master)](https://travis-ci.org/markkvdb/ghoR)
 <!-- badges: end -->
 
 The ghoR package can be used to conventiently load data from the GHO portal of the WHO. The GHO database contains over 20,000 *indicators* which represent a statistic on a country level.

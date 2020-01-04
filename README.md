@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/markkvdb/ghoR.svg?branch=master)](https://travis-ci.org/markkvdb/ghoR)
 <!-- badges: end -->
 
 The ghoR package can be used to conventiently load data from the GHO
