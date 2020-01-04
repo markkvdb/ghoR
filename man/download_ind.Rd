@@ -10,11 +10,8 @@ download_ind(ind)
 \item{ind}{A valid indicator of the GHO API.}
 }
 \value{
-Tibble with data of indicator
+Tibble with data of indicator.
 }
 \description{
 Download file of indicator and read it into a data frame
-}
-\examples{
-data <- download_ind("RSUD_30")
 }

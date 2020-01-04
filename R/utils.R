@@ -2,8 +2,6 @@
 #'
 #' @param url A GHO API call.
 #' @return A matrix with the protocol, host, api, indicator and possible filter.
-#' @examples
-#' separate_url("https://ghoapi.azureedge.net/api/Indicator?")
 separate_url <- function(url) {
   # Use regex to separate url in parts
   matches <- regexec("^(([^:]+)://)?([^:/]+)(/api/)([^?]*)(\\?.*)", url)
@@ -20,8 +18,6 @@ separate_url <- function(url) {
 #'
 #' @param ind An valid indicator of the GHO API.
 #' @return A valid GHO API url in string format.
-#' @examples
-#' ind_to_url("RSUD_30")
 ind_to_url <- function(ind) {
   url <- paste0("https://ghoapi.azureedge.net/api/", ind)
 
@@ -32,9 +28,7 @@ ind_to_url <- function(ind) {
 #' Indicator value to local JSON file
 #'
 #' @param ind An valid indicator of the GHO API.
-#' @return
-#' @examples
-#' ind_to_json("RSUD_30")
+#' @return JSON file with data for given indicator
 ind_to_json <- function(ind) {
   json <- paste0("~/.ghoR/", ind, ".json")
 
@@ -45,8 +39,6 @@ ind_to_json <- function(ind) {
 #'
 #' @param ind A valid indicator of the GHO API.
 #' @return TRUE if indicator is in cache, FALSE if not.
-#' @examples
-#' ind_in_cache("RSUD_30")
 ind_in_cache <- function(ind) {
   if (!dir.exists("~/.ghoR")) {
     dir.create("~/.ghoR")
@@ -59,9 +51,7 @@ ind_in_cache <- function(ind) {
 #' Download file of indicator and read it into a data frame
 #'
 #' @param ind A valid indicator of the GHO API.
-#' @return Tibble with data of indicator
-#' @examples
-#' data <- download_ind("RSUD_30")
+#' @return Tibble with data of indicator.
 download_ind <- function(ind) {
   # Download file if it doesn't exist already
   if (!ind_in_cache(ind)) {
@@ -93,7 +83,7 @@ null_to_NA_list <- function(list) {
 
 #' Generate a SHA256 hash file from a downloaded WHO data file
 #'
-#' @param list A data object
+#' @param data A data object
 #' @return A character string of length 64 containing the SHA256 string
 create_hash_from_data <- function(data) {
   return(digest::digest(data, algo="sha256", serialize=T))

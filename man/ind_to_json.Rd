@@ -10,11 +10,8 @@ ind_to_json(ind)
 \item{ind}{An valid indicator of the GHO API.}
 }
 \value{
-
+JSON file with data for given indicator
 }
 \description{
 Indicator value to local JSON file
-}
-\examples{
-ind_to_json("RSUD_30")
 }

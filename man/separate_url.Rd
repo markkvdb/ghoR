@@ -15,6 +15,3 @@ A matrix with the protocol, host, api, indicator and possible filter.
 \description{
 Separate parts of the API url for further analysis
 }
-\examples{
-separate_url("https://ghoapi.azureedge.net/api/Indicator?")
-}
