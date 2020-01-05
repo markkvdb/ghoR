@@ -7,6 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.org/markkvdb/ghoR.svg?branch=master)](https://travis-ci.org/markkvdb/ghoR)
+[![Codecov test
+coverage](https://codecov.io/gh/markkvdb/ghoR/branch/master/graph/badge.svg)](https://codecov.io/gh/markkvdb/ghoR?branch=master)
 <!-- badges: end -->
 
 The ghoR package can be used to conventiently load data from the GHO

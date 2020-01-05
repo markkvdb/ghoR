@@ -10,3 +10,4 @@
 ^\.github$          # Contributing guidelines, CoC, issue templates, etc.
 ^README\.Rmd$
 ^\.travis\.yml$
+^codecov\.yml$
