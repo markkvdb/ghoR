@@ -11,3 +11,7 @@ test_that("indicators table has three columns", {
   ind_colnames <- colnames(ind_table)
   expect_identical(ind_colnames, c("IndicatorCode", "IndicatorName", "Language"))
 })
+
+test_that("invalid indicator gives error", {
+  expect_error(read_GHO_data("THISISFAKE"), "Provided indicator does not exist in the WHO database.")
+})
