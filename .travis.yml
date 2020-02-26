@@ -4,5 +4,3 @@ language: R
 cache: packages
 after_success:
   - Rscript -e 'covr::codecov()'
-  
-CODECOV_TOKEN="02592712-f8c1-43c7-92fb-c3b44a9e62df"
