@@ -2,3 +2,4 @@
 
 export(read_GHO_data)
 export(show_GHO_indicators)
+export(tidy_data)

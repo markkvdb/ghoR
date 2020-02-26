@@ -38,7 +38,7 @@ devtools::install_github("markkvdb/ghoR")
 ```
 ## Example
 
-If you are not sure yet which indicator you would like to explore you can discover all indicators by loading it into a dataframe. To prevent downloading the dataset every time you request a dataset, the dataset is saved in `~/.ghoR/`. This file is only updated if the WHO website shows that 
+If you are not sure yet which indicator you would like to explore you can discover all indicators by loading it into a dataframe. To prevent downloading the dataset every time you request a dataset, the dataset is saved in `~/.ghoR/`. This file is only updated if the WHO website shows that the dataset is last updated after downloading our local version of the dataset.
 
 ```{r example-load}
 # First load the library and kable to present table
@@ -58,6 +58,16 @@ As an example, we will look at the remaining life expectancy from age $x$ for al
 ex_data <- read_GHO_data("LIFE_0000000035")
 
 knitr::kable(head(ex_data, 10))
+```
+
+## Tidying dataset
+
+Datasets downloaded from the WHO website do not follow the tidy philosophy. For the spatial, time and other dimensions, each dimension has a column for the unit of the dimension and one for the value. Most users prefer having their datasets ready for analysis. The `ghoR` package provides a function to transform the dataset as
+
+```{r example-tidy}
+tidy_data <- tidy_data(ex_data)
+
+knitr::kable(head(tidy_data, 10))
 ```
 
 ## Updating Datasets

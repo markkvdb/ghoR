@@ -15,3 +15,24 @@ test_that("indicators table has three columns", {
 test_that("invalid indicator gives error", {
   expect_error(read_GHO_data("THISISFAKE"), "Provided indicator does not exist in the WHO database.")
 })
+
+test_that("tidying data removes Dim value columns", {
+  data <- tidy_data(read_GHO_data("WHOSIS_000001"))
+  expect_equal(length(grep("Dim[0-9]?$", colnames(data))), 0)
+})
+
+test_that("tidying data removes Dim type columns", {
+  data <- tidy_data(read_GHO_data("WHOSIS_000001"))
+  expect_equal(length(grep("Dim[0-9]?Type$", colnames(data))), 0)
+})
+
+test_that("tidying data preserves original columns", {
+  raw_data <- read_GHO_data("WHOSIS_000001")
+  tidy_data <- tidy_data(raw_data)
+  
+  # get columns that should be preserved
+  cols_keep <- colnames(raw_data)[grep("Dim", colnames(raw_data), invert=TRUE)]
+  
+  # check if tidy data contains the same columns still
+  expect_identical(intersect(cols_keep, colnames(tidy_data)), cols_keep)
+})

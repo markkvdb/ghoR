@@ -115,3 +115,15 @@ ind_to_last_update <- function(ind) {
 
   return(as.Date(last_updated))
 }
+
+#' Create dcast formula from two character vectors
+#' 
+#' @param cols_lhs LHS columns
+#' @param cols_rhs RHS columns
+#' @return formula
+create_formula <- function(cols_lhs, cols_rhs) {
+  lhs_str <- paste(cols_lhs, collapse=" + ")
+  rhs_str <- paste(cols_rhs, collapse=" + ")
+  
+  return(stats::as.formula(paste(lhs_str, rhs_str, sep=" ~ ")))
+}

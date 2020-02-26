@@ -1,7 +1,7 @@
 Package: ghoR
 Type: Package
 Title: R interface for the GHO API of the WHO
-Version: 0.1.0
+Version: 0.2.0
 Author: M. van der Broek, S. el Gewily
 Maintainer: M. van der Broek <markvanderbroek@gmail.com>
 Description: This package provides an interface to load data from the GHO API.
